@@ -1,7 +1,6 @@
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import ProfileActions from "./ProfileActions";
-import { toolLinks } from "@/constants";
 
 const Navbar = () => {
   return (
