@@ -1,11 +1,11 @@
 declare type CreateUserParams = {
   clerkId: string;
   email: string;
-  name: string;
-  avatar: string;
+  username: string | null;
+  avatar: string | null;
 };
 
 declare type UpdateUserParams = {
-  username: string;
-  avatar: string;
+  username: string | null;
+  avatar: string | null;
 };
