@@ -41,6 +41,7 @@ export async function POST(req: Request) {
       "svix-signature": svix_signature,
     }) as WebhookEvent;
   } catch (error) {
+    console.error("Error verifying webhook:", error);
     return new Response("Error occured -- invalid signature", { status: 400 });
   }
 
@@ -99,6 +100,9 @@ export async function POST(req: Request) {
       user: deletedUser,
     });
   }
+
+  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+  console.log("Webhook body:", body);
 
   return new Response("", { status: 200 });
 }
