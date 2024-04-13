@@ -4,7 +4,7 @@ import User from "../models/user.model";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     const newUser = await User.create(user);
 
@@ -20,7 +20,7 @@ export const createUser = async (user: CreateUserParams) => {
 
 export const getUserById = async (userId: string) => {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     const user = await User.findOne({ clerkId: userId });
 
@@ -36,7 +36,7 @@ export const getUserById = async (userId: string) => {
 
 export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     const updatedUser = await User.findOneAndUpdate({ clerkId }, user, {
       new: true,
