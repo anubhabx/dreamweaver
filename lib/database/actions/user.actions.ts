@@ -54,7 +54,7 @@ export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
 
 export const deleteUser = async (clerkId: string) => {
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     const userToDelete = await User.findOne({
       clerkId,
