@@ -12,6 +12,8 @@ import { Webhook } from "svix";
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
+  console.log("Webhook secret:", WEBHOOK_SECRET);
+
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
@@ -19,6 +21,9 @@ export async function POST(req: Request) {
   }
 
   const headerPayload = headers();
+
+  console.log("Header payload:", headerPayload);
+
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
