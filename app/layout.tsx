@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const font = DM_Sans({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
               />
             </div>
             {children}
+            <SpeedInsights />
           </ThemeProvider>
         </body>
       </html>
