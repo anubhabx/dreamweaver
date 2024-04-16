@@ -1,8 +1,12 @@
 import { OpenAI } from "openai";
+import { env } from "process";
 
-export const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+export const openai = new OpenAI({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
-export const gpt3 = async (prompt: string) => {
+export const gpt3 = async (prompt: string): Promise<string> => {
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
@@ -18,5 +22,5 @@ export const gpt3 = async (prompt: string) => {
     ],
   });
 
-  return response.choices[0].message.content;
+  return response.choices[0].message.content || "Could not generate response.";
 };

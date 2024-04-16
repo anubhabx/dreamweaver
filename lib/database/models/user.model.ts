@@ -1,5 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 
+export interface IUser {
+  clerkId: string;
+  email: string;
+  username: string;
+  avatar: string;
+}
+
 const userSchema = new Schema({
   clerkId: {
     type: String,

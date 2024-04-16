@@ -8,17 +8,25 @@ import { useState } from "react";
 const GeneratePage = () => {
   const [chat, setChat] = useState<
     {
-      text: string;
+      content: string | Promise<string>;
       isUser: boolean;
     }[]
   >([]);
+
   const [prompt, setPrompt] = useState<string>("");
 
   return (
     <div className="flex flex-col w-full h-[83vh] my-auto shadow-lg items-center justify-center border rounded-md">
-      {chat.length === 0 && <InitialScreen setPrompt={setPrompt} />}
-      {chat.length > 0 && <Chat chat={chat} setChat={setChat} />}
-      <ChatInput prompt={prompt} setPrompt={setPrompt} setChat={setChat} />
+      <>
+        {chat?.length === 0 && <InitialScreen setPrompt={setPrompt} />}
+        {chat && chat?.length > 0 && <Chat chat={chat} setChat={setChat} />}
+        <ChatInput
+          prompt={prompt}
+          setPrompt={setPrompt}
+          chat={chat}
+          setChat={setChat}
+        />
+      </>
     </div>
   );
 };

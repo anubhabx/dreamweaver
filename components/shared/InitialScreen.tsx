@@ -70,7 +70,7 @@ const InitialScreen = ({
         >
           Enter a prompt to generate a dream
         </motion.p>
-        <motion.div className="flex gap-12 items-center mx-auto">
+        <motion.div className="flex gap-12 flex-col md:flex-row max-md:overflow-y-scroll max-h-72 md:h-full items-center mx-auto">
           {placeholderPrompts.map((prompt, index) => (
             <motion.div
               initial={{ opacity: 0, y: 50 }}

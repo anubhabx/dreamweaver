@@ -1,6 +1,8 @@
+"use server";
+
 import { handleError } from "@/lib/utils";
 import { connectToDatabase } from "../connect.database";
-import User from "../models/user.model";
+import User, { IUser } from "../models/user.model";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
@@ -18,7 +20,7 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
-export const getUserById = async (userId: string) => {
+export async function getUserById(userId: string): Promise<IUser> {
   try {
     await connectToDatabase();
 
@@ -31,8 +33,9 @@ export const getUserById = async (userId: string) => {
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
     handleError(error);
+    return Promise.reject(error); 
   }
-};
+}
 
 export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
   try {
